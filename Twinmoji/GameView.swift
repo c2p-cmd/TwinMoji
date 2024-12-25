@@ -154,8 +154,8 @@ extension GameView {
             currentEmoji = GameConstants.level1.emojiList.shuffled()
             
             withAnimation(.spring(duration: 0.75)) {
-                leftCard = Array(currentEmoji[0 ..< itemCount])//.shuffled()
-                rightCard = Array(currentEmoji[itemCount+1 ..< itemCount+itemCount] + [currentEmoji[0]])//.shuffled()
+                leftCard = Array(currentEmoji[0 ..< itemCount]).shuffled()
+                rightCard = Array(currentEmoji[itemCount+1 ..< itemCount+itemCount] + [currentEmoji[0]]).shuffled()
             }
         }
         
