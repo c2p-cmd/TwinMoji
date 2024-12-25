@@ -8,11 +8,33 @@
 import SwiftUI
 
 struct PlayerButton: View {
+    let gameState: GameState
+    let score: Int
+    let color: Color
+    let action: () -> Void
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        Button(action: action) {
+            Rectangle()
+                .fill(color)
+                .frame(minWidth: 60)
+                .overlay(alignment: .center) {
+                    Text(score.description)
+                        .fixedSize()
+                        .foregroundStyle(.white)
+                        .font(.system(size: 48).bold())
+                        .contentTransition(.numericText())
+                }
+        }
+        .disabled(gameState != .waiting)
     }
 }
 
 #Preview {
-    PlayerButton()
+    PlayerButton(
+        gameState: .player1Answering,
+        score: 0,
+        color: .blue,
+        action: {}
+    )
 }
