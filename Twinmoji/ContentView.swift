@@ -8,14 +8,21 @@
 import SwiftUI
 
 struct ContentView: View {
+    @State private var gameStarted = false
+    @State private var gameDifficulty: GameDifficulty = .medium
+    
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+        if gameStarted {
+            GameView(
+                itemCount: gameDifficulty.itemCount,
+                answerTime: gameDifficulty.answerTimeOut,
+                isGameActive: $gameStarted
+            )
+            .persistentSystemOverlays(.hidden)
+            .defersSystemGestures(on: .bottom)
+        } else {
+            MenuView(gameStarted: $gameStarted, gameDifficulty: $gameDifficulty)
         }
-        .padding()
     }
 }
 
